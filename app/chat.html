@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="chat-container">
+    <header class="chat-header">
+      <h1>Chat Room</h1>
+    </header>
+
+    <div class="chat-body">
+      <!-- Left: Users list -->
+      <aside class="users-list">
+        <h3>Users</h3>
+        <ul id="users"></ul>
+      </aside>
+
+      <!-- Right: Chat messages -->
+      <main class="chat-main">
+        <ul id="messages" class="messages"></ul>
+        <form id="chat-form" class="chat-form">
+          <input id="msg" type="text" placeholder="Enter message..." autocomplete="off">
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const socket = io();
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("msg");
+    const messagesEl = document.getElementById("messages");
+    const usersEl = document.getElementById("users");
+
+    // Get username & room from query params
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username") || "Anonymous";
+    const room = params.get("room") || "General";
+
+    socket.emit("join", username, room);
+
+    // Render messages
+    function renderMessage(msg) {
+      const li = document.createElement("li");
+      li.className = "message";
+      const time = new Date(msg.time).toLocaleTimeString();
+
+      li.innerHTML = `<span class="meta">${msg.user} <small>${time}</small></span>
+                      <p class="text">${msg.text}</p>`;
+
+      messagesEl.appendChild(li);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    // Update online users
+    socket.on("users", (users) => {
+      usersEl.innerHTML = "";
+      users.forEach(u => {
+        const li = document.createElement("li");
+        li.textContent = u;
+        usersEl.appendChild(li);
+      });
+    });
+
+    // Message history
+    socket.on("messageHistory", (history) => {
+      messagesEl.innerHTML = "";
+      history.forEach(renderMessage);
+    });
+
+    // New messages
+    socket.on("message", renderMessage);
+
+    // Send message
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      socket.emit("chatMessage", text);
+      input.value = "";
+    });
+  </script>
+</body>
+</html>

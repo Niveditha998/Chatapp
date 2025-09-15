@@ -1,0 +1,230 @@
+/* ----------------- Base Styles ----------------- */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #222;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----------------- Chat Container (general) ----------------- */
+.chat-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  padding: 12px 16px;
+  background: #2b7cff;
+  color: #fff;
+  text-align: center;
+}
+
+/* ----------------- Join Page ----------------- */
+.join-page .chat-container {
+  width: 400px;           /* compact width */
+  height: auto;           /* height adjusts to content */
+}
+
+.join-page .chat-main {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join-page .join-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.join-page .join-form input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.join-page .join-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2b7cff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.join-page .join-form button:hover {
+  background: #1a5cd6;
+}
+
+/* ----------------- Chat Container ----------------- */
+.chat-container {
+  width: 90%;
+  max-width: 1200px;
+  height: 90vh;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  padding: 16px;
+  background: #2b7cff;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Chat body: left users + right chat */
+.chat-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ----------------- Users List ----------------- */
+.users-list {
+  width: 220px;
+  background: #f9f9f9;
+  padding: 16px;
+  border-right: 1px solid #eee;
+  overflow-y: auto;
+}
+
+.users-list h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+}
+
+.users-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.users-list li {
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  background: #fff;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* ----------------- Chat Main ----------------- */
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* Messages list */
+.messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Individual message */
+.message {
+  margin-bottom: 12px;
+}
+
+.meta {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+.text {
+  margin: 0;
+  background: #f1f3f5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 75%;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Typing indicator */
+.typing {
+  min-height: 18px;
+  color: #666;
+  margin: 6px 0 12px;
+  font-style: italic;
+}
+
+/* Chat form (input bar) */
+.chat-form {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 10px;
+  background: #fff;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.chat-form button {
+  padding: 12px 16px;
+  border: none;
+  background: #2b7cff;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.chat-form button:hover {
+  background: #1a5cd6;
+}
+
+/* Scrollbar styling for users and messages */
+.users-list::-webkit-scrollbar,
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.users-list::-webkit-scrollbar-thumb,
+.messages::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}

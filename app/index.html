@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="join-page">
+
+  <div class="chat-container">
+    <header class="chat-header">
+      <h1>Join Chat</h1>
+    </header>
+
+    <main class="chat-main">
+      <form id="join-form" class="join-form">
+        <input type="text" id="username" placeholder="Enter display name" required>
+        <input type="text" id="room" placeholder="Enter room name" required>
+        <button type="submit">Join Room</button>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById('join-form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const room = document.getElementById('room').value.trim();
+
+      if (!username || !room) return;
+
+      // Redirect to chat.html with query params
+      window.location.href = `chat.html?username=${encodeURIComponent(username)}&room=${encodeURIComponent(room)}`;
+    });
+  </script>
+</body>
+</html>
